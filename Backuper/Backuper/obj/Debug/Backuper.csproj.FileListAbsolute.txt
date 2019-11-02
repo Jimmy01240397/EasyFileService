@@ -1,0 +1,26 @@
+C:\Users\user\source\repos\Backuper\Backuper\bin\Debug\Backuper.exe
+C:\Users\user\source\repos\Backuper\Backuper\bin\Debug\Backuper.pdb
+C:\Users\user\source\repos\Backuper\Backuper\obj\Debug\Backuper.csprojAssemblyReference.cache
+C:\Users\user\source\repos\Backuper\Backuper\obj\Debug\Backuper.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\Backuper\Backuper\obj\Debug\Backuper.csproj.CopyComplete
+C:\Users\user\source\repos\Backuper\Backuper\obj\Debug\Backuper.exe
+C:\Users\user\source\repos\Backuper\Backuper\obj\Debug\Backuper.pdb
+F:\資料\C語言編輯器\新文件\Backuper\Backuper\obj\Debug\Backuper.exe
+F:\資料\C語言編輯器\新文件\Backuper\Backuper\obj\Debug\Backuper.pdb
+H:\資料\C語言編輯器\新文件\Backuper\Backuper\bin\Debug\Backuper.exe
+H:\資料\C語言編輯器\新文件\Backuper\Backuper\bin\Debug\Backuper.pdb
+H:\資料\C語言編輯器\新文件\Backuper\Backuper\obj\Debug\Backuper.csprojAssemblyReference.cache
+H:\資料\C語言編輯器\新文件\Backuper\Backuper\obj\Debug\Backuper.csproj.CoreCompileInputs.cache
+H:\資料\C語言編輯器\新文件\Backuper\Backuper\obj\Debug\Backuper.csproj.CopyComplete
+H:\資料\C語言編輯器\新文件\Backuper\Backuper\obj\Debug\Backuper.exe
+H:\資料\C語言編輯器\新文件\Backuper\Backuper\obj\Debug\Backuper.pdb
+L:\Data\C Studio\My Project\Backuper\Backuper\obj\Debug\Backuper.csprojAssemblyReference.cache
+L:\Data\C Studio\My Project\Backuper\Backuper\obj\Debug\Backuper.csproj.CoreCompileInputs.cache
+L:\Data\C Studio\My Project\Backuper\Backuper\obj\Debug\Backuper.exe
+L:\Data\C Studio\My Project\Backuper\Backuper\obj\Debug\Backuper.pdb
+L:\Data\C Studio\My Project\Backuper\Backuper\bin\Debug\Backuper.exe.config
+L:\Data\C Studio\My Project\Backuper\Backuper\bin\Debug\Backuper.exe
+L:\Data\C Studio\My Project\Backuper\Backuper\bin\Debug\Backuper.pdb
+L:\Data\C Studio\My Project\Backuper\Backuper\bin\Debug\UnityNetwork.dll
+L:\Data\C Studio\My Project\Backuper\Backuper\bin\Debug\UnityNetwork.pdb
+L:\Data\C Studio\My Project\Backuper\Backuper\obj\Debug\Backuper.csproj.CopyComplete
