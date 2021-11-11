@@ -1,0 +1,13 @@
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\bin\Release\EasyFileServiceClient.exe.config
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\bin\Release\EasyFileServiceClient.exe
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\bin\Release\EasyFileServiceClient.pdb
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\bin\Release\JimmikerNetwork.dll
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\bin\Release\JimmikerNetwork.pdb
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\bin\Release\JimmikerNetwork.xml
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\obj\Release\EasyFileServiceClient.csprojAssemblyReference.cache
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\obj\Release\EasyFileServiceClient.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\obj\Release\EasyFileServiceClient.csproj.CopyComplete
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\obj\Release\EasyFileServiceClient.exe
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\obj\Release\EasyFileServiceClient.pdb
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\bin\Release\PacketType.dll
+C:\Users\user\source\repos\EasyFileService\EasyFileServiceClient\bin\Release\PacketType.pdb

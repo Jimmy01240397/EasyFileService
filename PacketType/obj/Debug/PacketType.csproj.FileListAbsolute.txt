@@ -1,0 +1,6 @@
+C:\Users\user\source\repos\EasyFileService\PacketType\bin\Debug\PacketType.dll
+C:\Users\user\source\repos\EasyFileService\PacketType\bin\Debug\PacketType.pdb
+C:\Users\user\source\repos\EasyFileService\PacketType\obj\Debug\PacketType.csprojAssemblyReference.cache
+C:\Users\user\source\repos\EasyFileService\PacketType\obj\Debug\PacketType.csproj.CoreCompileInputs.cache
+C:\Users\user\source\repos\EasyFileService\PacketType\obj\Debug\PacketType.dll
+C:\Users\user\source\repos\EasyFileService\PacketType\obj\Debug\PacketType.pdb
