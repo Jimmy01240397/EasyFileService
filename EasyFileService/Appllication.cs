@@ -15,9 +15,11 @@ namespace EasyFileService
         public string rootpath { get; private set; } = "";
         public event Action<MessageType, string> GetMessage;
 
-        public Appllication(string rootpath, ProtocolType protocol):base(IPAddress.IPv6Any, 6875, protocol)
+        public readonly char nextdir = (Environment.OSVersion.Platform == PlatformID.Unix) || (Environment.OSVersion.Platform == PlatformID.MacOSX) || ((int)Environment.OSVersion.Platform == 128) ? '/' : '\\';
+
+        public Appllication(string rootpath, int port, ProtocolType protocol):base(IPAddress.IPv6Any, port, protocol)
         {
-            if (rootpath[rootpath.Length - 1] != '\\') rootpath += "\\";
+            if (rootpath[rootpath.Length - 1] != nextdir) rootpath += nextdir.ToString();
             this.rootpath = rootpath;
         }
 

@@ -22,6 +22,18 @@ namespace EasyFileService
             appllication = _appllication;
         }
 
+        string formatpath(string path)
+        {
+            string[] now = path.Split('/', '\\');
+            StringBuilder ans = new StringBuilder();
+            for (int i = 0; i < now.Length; i++)
+            {
+                ans.Append(now[i] + appllication.nextdir);
+            }
+            ans.Remove(ans.Length - 1, 1);
+            return ans.ToString();
+        }
+
         public override void OnOperationRequest(SendData sendData)
         {
             switch((RequestType)sendData.Code)
@@ -31,7 +43,7 @@ namespace EasyFileService
                         string nowpath;
                         try
                         {
-                            nowpath = appllication.rootpath + sendData.Parameters.ToString();
+                            nowpath = appllication.rootpath + formatpath(sendData.Parameters.ToString());
                         }
                         catch (Exception)
                         {
@@ -51,7 +63,7 @@ namespace EasyFileService
                             string[] dirs = Directory.GetDirectories(nowpath);
                             for(int i = 0; i < dirs.Length; i++)
                             {
-                                alllist.Add(Path.GetFileName(dirs[i]) + "\\");
+                                alllist.Add(Path.GetFileName(dirs[i]) + appllication.nextdir.ToString());
                             }
                         }
                         else
@@ -67,7 +79,7 @@ namespace EasyFileService
                         string nowpath;
                         try
                         {
-                            nowpath = Path.GetFullPath(appllication.rootpath + getdata[0].ToString());
+                            nowpath = Path.GetFullPath(appllication.rootpath + formatpath(getdata[0].ToString()));
                         }
                         catch (Exception)
                         {
@@ -75,7 +87,7 @@ namespace EasyFileService
                         }
                         if (getdata.Length == 1)
                         {
-                            if (!Path.GetFullPath(nowpath).Contains(Path.GetFullPath(appllication.rootpath))) badpath = Path.GetFullPath(appllication.rootpath + getdata[0].ToString());
+                            if (!Path.GetFullPath(nowpath).Contains(Path.GetFullPath(appllication.rootpath))) badpath = Path.GetFullPath(appllication.rootpath + formatpath(getdata[0].ToString()));
                         }
                         else
                         {
@@ -102,7 +114,7 @@ namespace EasyFileService
                         string nowpath;
                         try
                         {
-                            nowpath = Path.GetFullPath(appllication.rootpath + sendData.Parameters.ToString());
+                            nowpath = Path.GetFullPath(appllication.rootpath + formatpath(sendData.Parameters.ToString()));
                         }
                         catch (Exception)
                         {
@@ -117,7 +129,7 @@ namespace EasyFileService
 
                         void Sendfile(string path, string remotepath)
                         {
-                            if(remotepath != "") if (remotepath[remotepath.Length - 1] != '\\') remotepath += "\\";
+                            if(remotepath != "") if (remotepath[remotepath.Length - 1] != appllication.nextdir) remotepath += appllication.nextdir.ToString();
                             if (Directory.Exists(path))
                             {
                                 Reply((byte)ResponseType.downloadback, remotepath + Path.GetFileName(path), (short)DownloadReturnCode.mkdir, "");
@@ -125,7 +137,7 @@ namespace EasyFileService
                                 files.AddRange(Directory.GetDirectories(path));
                                 for (int i = 0; i < files.Count; i++)
                                 {
-                                    Sendfile(files[i], remotepath + Path.GetFileName(path) + "\\");
+                                    Sendfile(files[i], remotepath + Path.GetFileName(path) + appllication.nextdir.ToString());
                                 }
                             }
                             else if (File.Exists(path))
@@ -138,7 +150,7 @@ namespace EasyFileService
                                     {
                                         byte[] sendfile = new byte[cont];
                                         Array.Copy(buffer, sendfile, cont);
-                                        Reply((byte)ResponseType.downloadback, new object[] { path.Replace(nowpath, sendData.Parameters.ToString()), remotepath + Path.GetFileName(path), sendfile, isfirst }, (short)DownloadReturnCode.sendfile, "");
+                                        Reply((byte)ResponseType.downloadback, new object[] { path.Replace(nowpath, formatpath(sendData.Parameters.ToString())), remotepath + Path.GetFileName(path), sendfile, isfirst }, (short)DownloadReturnCode.sendfile, "");
                                         isfirst = false;
                                     }
                                     file.Close();
@@ -159,7 +171,7 @@ namespace EasyFileService
                         string nowpath;
                         try
                         {
-                            nowpath = Path.GetFullPath(appllication.rootpath + sendData.Parameters.ToString());
+                            nowpath = Path.GetFullPath(appllication.rootpath + formatpath(sendData.Parameters.ToString()));
                         }
                         catch (Exception)
                         {
@@ -190,7 +202,7 @@ namespace EasyFileService
                         string nowpath;
                         try
                         {
-                            nowpath = Path.GetFullPath(appllication.rootpath + sendData.Parameters.ToString());
+                            nowpath = Path.GetFullPath(appllication.rootpath + formatpath(sendData.Parameters.ToString()));
                         }
                         catch (Exception)
                         {
@@ -230,15 +242,15 @@ namespace EasyFileService
                         string destinationpath;
                         try
                         {
-                            sourcepath = Path.GetFullPath(appllication.rootpath + getdata[0]);
-                            destinationpath = Path.GetFullPath(appllication.rootpath + getdata[1]);
+                            sourcepath = Path.GetFullPath(appllication.rootpath + formatpath(getdata[0].ToString()));
+                            destinationpath = Path.GetFullPath(appllication.rootpath + formatpath(getdata[1].ToString()));
                         }
                         catch (Exception)
                         {
                             break;
                         }
 
-                        if((destinationpath + "\\").Contains(sourcepath + "\\"))
+                        if((destinationpath + appllication.nextdir.ToString()).Contains(sourcepath + appllication.nextdir.ToString()))
                         {
                             break;
                         }

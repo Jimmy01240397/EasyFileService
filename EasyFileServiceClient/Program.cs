@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,6 +9,7 @@ using System.IO;
 using JimmikerNetwork;
 using JimmikerNetwork.Client;
 using PacketType;
+using ConsoleCtrl;
 
 namespace EasyFileServiceClient
 {
@@ -138,14 +138,15 @@ namespace EasyFileServiceClient
             Client client = new Client(ProtocolType.Tcp);
             client.Connect(host, port);
 
-            SetConsoleCtrlHandler(t =>
+            ConsoleCtrl.ConsoleCtrl consoleCtrl = (Environment.OSVersion.Platform == PlatformID.Unix) || (Environment.OSVersion.Platform == PlatformID.MacOSX) || ((int)Environment.OSVersion.Platform == 128) ? (ConsoleCtrl.ConsoleCtrl)new UnixConsoleCtrl() : (ConsoleCtrl.ConsoleCtrl)new WinConsoleCtrl();
+
+            consoleCtrl.OnExit += (sender, e) =>
             {
                 Console.WriteLine("Closing...");
                 client.clientLinker.Disconnect();
                 SpinWait.SpinUntil(() => client.stop);
                 Console.WriteLine("OK...");
-                return false;
-            }, true);
+            };
 
             SpinWait.SpinUntil(() => client.clientLinker.linkstate != LinkCobe.None);
 
@@ -166,7 +167,7 @@ namespace EasyFileServiceClient
                                 client.finish = true;
                                 break;
                             }
-                            if(remotepath != "") if (remotepath[remotepath.Length - 1] != '\\') remotepath += "\\";
+                            if(remotepath != "") if (remotepath[remotepath.Length - 1] != client.nextdir) remotepath += client.nextdir.ToString();
                             client.clientLinker.Ask((byte)RequestType.upload, new object[] { remotepath });
                             Uploader(client, localpath, remotepath);
                             client.finish = true;
@@ -186,7 +187,7 @@ namespace EasyFileServiceClient
                                 client.finish = true;
                                 break;
                             }
-                            if (localpath[localpath.Length - 1] != '\\') localpath += "\\";
+                            if (localpath[localpath.Length - 1] != client.nextdir) localpath += client.nextdir.ToString();
                             try
                             {
                                 client.downloadpath = Path.GetFullPath(localpath);
@@ -249,7 +250,7 @@ namespace EasyFileServiceClient
 
         static void Uploader(Client client, string path, string remotepath)
         {
-            if (remotepath[remotepath.Length - 1] != '\\') remotepath += "\\";
+            if (remotepath[remotepath.Length - 1] != client.nextdir) remotepath += client.nextdir.ToString();
             if (Directory.Exists(path))
             {
                 client.clientLinker.Ask((byte)RequestType.mkdir, remotepath + Path.GetFileName(path));
@@ -257,7 +258,7 @@ namespace EasyFileServiceClient
                 files.AddRange(Directory.GetDirectories(path));
                 for (int i = 0; i < files.Count; i++)
                 {
-                    Uploader(client, files[i], remotepath + Path.GetFileName(path) + "\\");
+                    Uploader(client, files[i], remotepath + Path.GetFileName(path) + client.nextdir.ToString());
                 }
             }
             else if(File.Exists(path))
@@ -277,20 +278,6 @@ namespace EasyFileServiceClient
                     file.Close();
                 }
             }
-        }
-
-        [DllImport("Kernel32")]
-        public static extern bool SetConsoleCtrlHandler(ConsoleCtrlDelegate handler, bool add);
-
-        public delegate bool ConsoleCtrlDelegate(CtrlTypes ctrlType);
-
-        public enum CtrlTypes
-        {
-            CTRL_C_EVENT = 0,
-            CTRL_BREAK_EVENT,
-            CTRL_CLOSE_EVENT,
-            CTRL_LOGOFF_EVENT = 5,
-            CTRL_SHUTDOWN_EVENT
         }
     }
 }

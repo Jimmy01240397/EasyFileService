@@ -13,6 +13,8 @@ namespace EasyFileServiceClient
 {
     public class Client : ClientListen
     {
+        public readonly char nextdir = (Environment.OSVersion.Platform == PlatformID.Unix) || (Environment.OSVersion.Platform == PlatformID.MacOSX) || ((int)Environment.OSVersion.Platform == 128) ? '/' : '\\';
+
         public bool stop { get; set; } = false;
         public bool finish { get; set; } = false;
 
@@ -34,6 +36,18 @@ namespace EasyFileServiceClient
         public void DebugReturn(string message)
         {
             
+        }
+
+        string formatpath(string path)
+        {
+            string[] now = path.Split('/', '\\');
+            StringBuilder ans = new StringBuilder();
+            for (int i = 0; i < now.Length; i++)
+            {
+                ans.Append(now[i] + nextdir);
+            }
+            ans.Remove(ans.Length - 1, 1);
+            return ans.ToString();
         }
 
         public void OnEvent(SendData sendData)
@@ -61,17 +75,17 @@ namespace EasyFileServiceClient
                         {
                             case DownloadReturnCode.mkdir:
                                 {
-                                    if(!Directory.Exists(downloadpath + sendData.Parameters.ToString()))
+                                    if(!Directory.Exists(downloadpath + formatpath(sendData.Parameters.ToString())))
                                     {
-                                        Directory.CreateDirectory(downloadpath + sendData.Parameters.ToString());
+                                        Directory.CreateDirectory(downloadpath + formatpath(sendData.Parameters.ToString()));
                                     }
                                     break;
                                 }
                             case DownloadReturnCode.sendfile:
                                 {
                                     object[] getdata = (object[])sendData.Parameters;
-                                    if((bool)getdata[3]) Console.WriteLine(getdata[0].ToString() + " => " + downloadpath + getdata[1].ToString());
-                                    using (FileStream file = File.Open(downloadpath + getdata[1].ToString(), (bool)getdata[3] ? FileMode.Create : FileMode.Append))
+                                    if((bool)getdata[3]) Console.WriteLine(getdata[0].ToString() + " => " + downloadpath + formatpath(getdata[1].ToString()));
+                                    using (FileStream file = File.Open(downloadpath + formatpath(getdata[1].ToString()), (bool)getdata[3] ? FileMode.Create : FileMode.Append))
                                     {
                                         byte[] buffer = (byte[])getdata[2];
                                         file.Write(buffer, 0, buffer.Length);

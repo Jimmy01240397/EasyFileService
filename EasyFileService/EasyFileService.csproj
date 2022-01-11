@@ -54,6 +54,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ConsoleCtrl\ConsoleCtrl.csproj">
+      <Project>{b7425130-9f0d-4b98-a6c4-47f47fa4de29}</Project>
+      <Name>ConsoleCtrl</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PacketType\PacketType.csproj">
       <Project>{1f2c0c14-a59a-46be-9a65-a0af127207ae}</Project>
       <Name>PacketType</Name>

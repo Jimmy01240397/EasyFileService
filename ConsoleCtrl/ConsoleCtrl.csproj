@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BD648B02-DDCC-408D-B8F1-1F64C5B99991}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>EasyFileServiceClient</RootNamespace>
-    <AssemblyName>EasyFileServiceClient</AssemblyName>
+    <ProjectGuid>{B7425130-9F0D-4B98-A6C4-47F47FA4DE29}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConsoleCtrl</RootNamespace>
+    <AssemblyName>ConsoleCtrl</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JimmikerNetwork">
-      <HintPath>..\NetworkServicePackage\JimmikerNetwork\bin\Release\JimmikerNetwork.dll</HintPath>
+    <Reference Include="Mono.Posix, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Posix-4.5.4.5.0\lib\net45\Mono.Posix.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,22 +44,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="ConsoleCtrl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UnixConsoleCtrl.cs" />
+    <Compile Include="WinConsoleCtrl.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ConsoleCtrl\ConsoleCtrl.csproj">
-      <Project>{b7425130-9f0d-4b98-a6c4-47f47fa4de29}</Project>
-      <Name>ConsoleCtrl</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PacketType\PacketType.csproj">
-      <Project>{1f2c0c14-a59a-46be-9a65-a0af127207ae}</Project>
-      <Name>PacketType</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
