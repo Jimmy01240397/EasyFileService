@@ -3,9 +3,20 @@ A tcp file server.
 
 ## Usage
 
+please install mono if you want to run in linux.
+```
+apt-get install mono-devel
+```
+
 ### Server
+use -h to get usage.
 ``` batch
-.\EasyFileService.exe <FileServiceRootPath>
+.\EasyFileServiceClient help
+```
+
+start service
+``` batch
+.\EasyFileService.exe -p <port> <FileServiceRootPath>
 ```
 
 ### Client
